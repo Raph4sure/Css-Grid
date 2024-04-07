@@ -1,9 +1,47 @@
+/* 
+// Method 1
+.challenge {
+    width: 800px;
+    margin: 20px auto;
+
+    display: grid;
+    grid-template-rows: 100px 200px 400px 100px;
+    grid-template-columns: 2fr 2fr 2fr 1.5fr;
+    // grid-template-rows: repeat(4, 1fr);
+    grid-gap: 15px;
+
+    & > * {
+        background-color: red;
+        font-size: 20px;
+        font-weight: 800;
+        padding: 20px;
+    }
+
+    .header {
+        grid-column: 1 / -1;
+    }
+
+    .small {
+        &--box4 {
+            grid-column: 4 / 5;
+            grid-row: 2 / 4;
+        }
+    }
+
+    .main {
+        grid-column: 1 / span 3;
+    }
+
+    .footer {
+        grid-column: 1 / -1;
+    }
+} */
 .challenge {
   width: 800px;
   margin: 20px auto;
   display: grid;
-  grid-template-rows: 100px 200px 400px 100px;
-  grid-template-columns: 2fr 2fr 2fr 1.5fr;
+  grid-template-rows: [head_start] 100px [head_end box_start] 200px [box_end main_start] 400px [main_end foot_start] 100px [foot_end];
+  grid-template-columns: repeat(3, [col_start] 1fr [col_end]) 150px [grid_end];
   grid-gap: 15px;
 }
 .challenge > * {
@@ -13,15 +51,15 @@
   padding: 20px;
 }
 .challenge .header {
-  grid-column: 1/-1;
+  grid-column: col_start 1/grid_end;
 }
 .challenge .small--box4 {
-  grid-column: 4/5;
-  grid-row: 2/4;
+  grid-column: col_end 3/grid_end;
+  grid-row: box_start/main_end;
 }
 .challenge .main {
-  grid-column: 1/span 3;
+  grid-column: col_start 1/col_end 3;
 }
 .challenge .footer {
-  grid-column: 1/-1;
+  grid-column: col_start 1/grid_end;
 }

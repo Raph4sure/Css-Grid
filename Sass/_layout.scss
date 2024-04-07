@@ -1,3 +1,5 @@
+/* 
+// Method 1
 .challenge {
     width: 800px;
     margin: 20px auto;
@@ -32,5 +34,43 @@
 
     .footer {
         grid-column: 1 / -1;
+    }
+} */
+
+// Method 2 Naming Grid Lines
+.challenge {
+    width: 800px;
+    margin: 20px auto;
+
+    display: grid;
+    grid-template-rows: [head_start] 100px [head_end box_start]200px [box_end main_start]400px [main_end foot_start]100px [foot_end];
+    // grid-template-columns: 2fr 2fr 2fr 1.5fr;
+    grid-template-columns: repeat(3, [col_start] 1fr [col_end]) 150px [grid_end];
+    grid-gap: 15px;
+
+    & > * {
+        background-color: red;
+        font-size: 20px;
+        font-weight: 800;
+        padding: 20px;
+    }
+
+    .header {
+        grid-column: col_start 1 / grid_end;
+    }
+
+    .small {
+        &--box4 {
+            grid-column: col_end 3 / grid_end;
+            grid-row: box_start / main_end;
+        }
+    }
+
+    .main {
+        grid-column: col_start 1 / col_end 3;
+    }
+
+    .footer {
+        grid-column: col_start 1 / grid_end;
     }
 }
