@@ -37,7 +37,7 @@
     }
 } */
 
-// Method 2 Naming Grid Lines
+/* // Method 2 Naming Grid Lines
 .challenge {
     width: 800px;
     margin: 20px auto;
@@ -72,5 +72,47 @@
 
     .footer {
         grid-column: col_start 1 / grid_end;
+    }
+} */
+
+// Method 3 Naming Grid Areas
+.challenge {
+    width: 800px;
+    margin: 20px auto;
+
+    display: grid;
+    grid-template-rows: 100px 200px 400px 100px;
+    grid-template-columns: repeat(3, [col_start] 1fr [col_end]) 150px [grid_end];
+    grid-gap: 15px;
+
+    grid-template-areas:
+        "head head head head"
+        "box box box sidebar"
+        "main main main sidebar"
+        "foot foot foot foot";
+
+    & > * {
+        background-color: red;
+        font-size: 20px;
+        font-weight: 800;
+        padding: 20px;
+    }
+
+    .header {
+        grid-area: head;
+    }
+
+    .small {
+        &--box4 {
+            grid-area: sidebar;
+        }
+    }
+
+    .main {
+        grid-area: main;
+    }
+
+    .footer {
+        grid-area: foot;
     }
 }
